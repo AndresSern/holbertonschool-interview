@@ -9,19 +9,19 @@ def canUnlockAll(boxes):
     """
         Function that dermines if all the boxes can be opened
     """
-    allKeys = [0]
     lenBoxes = len(boxes)
 
     if not isinstance(boxes, list) or lenBoxes == 0:
         return False
+    allKeys = [0]
 
     for rows in allKeys:
         tempBox = boxes[rows]
         if not isinstance(tempBox, list):
             return False
         for key in tempBox:
-            if key > lenBoxes:
-                return False
+            if key >= lenBoxes:
+                continue
             if key not in allKeys:
                 allKeys.append(key)
 
