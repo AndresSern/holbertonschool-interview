@@ -9,13 +9,13 @@ def canUnlockAll(boxes):
     """
         Function that dermines if all the boxes can be opened
     """
-    keys = set(boxes[0])
-    count = 0
-    for rows in boxes:
-        if rows == []:
-            count += 1
-        else:
-            keys = (keys | set(rows))
-    if count == 0:
-        return len(boxes) == len(boxes)
-    return (len(keys) == (len(boxes) - count))
+    allKeys = [0]
+    lenBoxes = len(boxes)
+    for rows in allKeys:
+        for key in boxes[rows]:
+            if key > lenBoxes:
+                return False
+            if key not in allKeys:
+                allKeys.append(key)
+
+    return (len(allKeys )  == (lenBoxes))
