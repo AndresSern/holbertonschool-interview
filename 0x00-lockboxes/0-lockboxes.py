@@ -11,11 +11,18 @@ def canUnlockAll(boxes):
     """
     allKeys = [0]
     lenBoxes = len(boxes)
+
+    if not isinstance(boxes, list) or lenBoxes == 0:
+        return False
+
     for rows in allKeys:
-        for key in boxes[rows]:
+        tempBox = boxes[rows]
+        if not isinstance(tempBox, list):
+            return False
+        for key in tempBox:
             if key > lenBoxes:
                 return False
             if key not in allKeys:
                 allKeys.append(key)
 
-    return (len(allKeys )  == (lenBoxes))
+    return (len(allKeys) == (lenBoxes))

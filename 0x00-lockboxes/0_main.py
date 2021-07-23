@@ -10,3 +10,15 @@ print(canUnlockAll(boxes))
 
 boxes = [[1, 4], [2], [0, 4, 1], [3], [], [4, 1], [5, 6]]
 print(canUnlockAll(boxes))
+
+""" FALSE """
+boxes = [[1], 2]
+print(canUnlockAll(boxes))
+
+""" False """
+boxes = ["Doing A Test", [1]]
+print(canUnlockAll(boxes))
+
+""" False """
+boxes = {"A":3}
+print(canUnlockAll(boxes))
