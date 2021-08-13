@@ -22,7 +22,7 @@ def minOperations(n):
 
     while num > 1:
         if num % div == 0:
-            num /=  div
+            num /= div
             Operati += + div
         else:
             div += 1
