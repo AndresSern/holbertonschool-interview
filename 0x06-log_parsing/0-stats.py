@@ -19,6 +19,7 @@ def checkInputLog(theInput):
     pattern = getIp + getDate + getRequest + getStatus_File
     return re.match(pattern, theInput)
 
+
 status_codes = {
     "200": 0,
     "301": 0,
@@ -37,6 +38,7 @@ def print_stats(status_codes, size):
     for status in sorted(status_codes.keys()):
         if status_codes[status]:
             print("{}: {}".format(status, status_codes[status]))
+
 
 size = 0
 
