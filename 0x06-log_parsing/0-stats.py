@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 import sys
 import re
+"""
+Module that parses a log and prints stats to stdout
+"""
 
 
 def checkInputLog(theInput):
