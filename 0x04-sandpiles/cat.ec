@@ -1,0 +1,12 @@
+user.name=AndresSern
+user.email=andrecamposer@gmail.com
+user.password=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
+credential.helper=store
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+remote.origin.url=https://github.com/AndresSern/holbertonschool-interview.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.main.remote=origin
+branch.main.merge=refs/heads/main

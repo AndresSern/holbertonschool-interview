@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 import random
 import sys
 from time import sleep
@@ -13,4 +13,3 @@ for i in range(10000):
         random.randint(1, 1024)
     ))
     sys.stdout.flush()
-

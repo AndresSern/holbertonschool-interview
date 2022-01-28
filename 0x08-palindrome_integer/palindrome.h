@@ -1,7 +1,10 @@
 #ifndef HEADER_FILE
 #define HEADER_FILE
 
-int is_palindrome(unsigned long n);
+#include <stdlib.h>
+#include <stdio.h>
 
+int is_palindrome(unsigned long n);
+int intLen(unsigned long n);
 
 #endif

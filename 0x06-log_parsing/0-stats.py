@@ -1,63 +1,48 @@
 #!/usr/bin/python3
 """
-Module that parses a log and prints stats to stdout
+Task - Script that reads stdin line by line and computes metrics
 """
+
 import sys
-import re
 
-
-def checkInputLog(theInput):
-    """ check if the format is the next or else return None
-        <IP Address> - [<date>] "GET /projects/260 HTTP/1.1" <status code>
-        <file size>
-    """
-
-    getIp = "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\s\-\s"
-    getDate = "\[\d{4}\-\d{2}\-\d{2}\s\d{2}\:\d{2}\:\d{2}\.\d{6}\]\s"
-    getRequest = "\"GET \/projects\/260 HTTP\/1.1\"\s"
-    getStatus_File = "\d{3}\s\d{1,4}$"
-    pattern = getIp + getDate + getRequest + getStatus_File
-    return re.match(pattern, theInput)
-
-
-def print_stats(status_codes, size):
-    """Prints the accumulated logs"""
-    print("File size: {}".format(size))
-    for status in sorted(status_codes.keys()):
-        if status_codes[status]:
-            print("{}: {}".format(status, status_codes[status]))
-
-status_codes = {
-    "200": 0,
-    "301": 0,
-    "400": 0,
-    "401": 0,
-    "403": 0,
-    "404": 0,
-    "405": 0,
-    "500": 0
-}
-
-size = 0
 
 if __name__ == "__main__":
-    dicCodes = 0
-    countLine = 0
+    st_code = {"200": 0,
+               "301": 0,
+               "400": 0,
+               "401": 0,
+               "403": 0,
+               "404": 0,
+               "405": 0,
+               "500": 0}
+    count = 1
+    file_size = 0
+
+    def parse_line(line):
+        """ Read, parse and grab data"""
+        try:
+            parsed_line = line.split()
+            status_code = parsed_line[-2]
+            if status_code in st_code.keys():
+                st_code[status_code] += 1
+            return int(parsed_line[-1])
+        except Exception:
+            return 0
+
+    def print_stats():
+        """print stats in ascending order"""
+        print("File size: {}".format(file_size))
+        for key in sorted(st_code.keys()):
+            if st_code[key]:
+                print("{}: {}".format(key, st_code[key]))
+
     try:
         for line in sys.stdin:
-            try:
-                countLine += 1
-                getLogs = line.split()
-                size += int(getLogs[-1])
-                if (checkInputLog(line) is not None and getLogs[-2] in
-                        status_codes):
-                    status_codes[getLogs[-2]] += 1
-
-                if countLine % 10 == 0:
-                    print_stats(status_codes, size)
-            except:
-                pass
+            file_size += parse_line(line)
+            if count % 10 == 0:
+                print_stats()
+            count += 1
     except KeyboardInterrupt:
-        print_stats(status_codes, size)
+        print_stats()
         raise
-    print_stats(status_codes, size)
+    print_stats()
