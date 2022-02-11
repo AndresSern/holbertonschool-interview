@@ -1,39 +1,23 @@
+#include <stdio.h>
 #include "palindrome.h"
-
 /**
- * is_palindrome - Checks if a number is palindrome
- * @n: the number to check
- * Return: 1 if its palindrome, 0 otherwise
+ * is_palindrome - checks a given unsigned integer is a palindrome
+ * @n: number to check
+ * Return: 1 or 0
  */
+
 int is_palindrome(unsigned long n)
 {
-	char nstr[intLen(n) + 1];
-	int left = 0, right = intLen(n) - 1;
+int once, rev_number = 0;
+int  backup = n;
 
-	while (left <= right)
-	{
-		if (nstr[left] != nstr[right])
-			return (0);
-		left++;
-		right--;
-	}
-
-	return (1);
-}
-
-/**
- * intLen - calculates the length of a number
- * @n: the number
- * Return: length of n
- */
-int intLen(unsigned long n)
+while (n != 0)
 {
-	unsigned int num = 0;
-
-	while (n)
-	{
-		num++;
-		n = n / 10;
-	}
-	return (num);
+once = n % 10;
+n /= 10;
+rev_number = rev_number * 10 + once;
+}
+if (backup == rev_number)
+return (1);
+return (0);
 }
