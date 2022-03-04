@@ -1,34 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "menger.h"
-/**
- * find_char - selects for block or no block
- * @col:  is th column
- * @row: is the row
- * Return: '#' or ' '
- */
-char find_char(int col, int row)
-{
-	for (; col && row; col /= 3, row /= 3)
-		if (col % 3 == 1 && row % 3 == 1)
-			return (' ');
-	return ('#');
-}
 
 /**
- * menger - prints 2 dimensional menger
- * @level: size  square
+ * menger - draws a 2D Menger Sponge
+ * @level: level of the menger sponge to draw
+ *
  */
 void menger(int level)
 {
-	int col, row, size;
+	int i, j, result, ii, jj;
+	char simbol;
 
-	if (level >= 0)
+	result = pow(3, level);
+
+	for (i = 0; i < result; i++)
 	{
-		size = pow(3, level);
-		for (col = 0; col < size; col++)
+		for (j = 0; j < result; j++)
 		{
-			for (row = 0; row < size; row++)
-				printf("%c", find_char(col, row));
-			printf("\n");
+			simbol = '#';
+			ii = i;
+			jj = j;
+			while (ii > 0)
+			{
+				if (ii % 3 == 1 && jj % 3 == 1)
+					simbol = ' ';
+				ii /= 3;
+				jj /= 3;
+			}
+			printf("%c", simbol);
 		}
+		printf("\n");
 	}
 }
