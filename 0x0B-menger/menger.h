@@ -1,1 +1,9 @@
-0x0B. Menger sponge
+#ifndef MENGER_H
+#define MENGER_H
+
+#include <stdio.h>
+#include <math.h>
+
+void menger(int level);
+
+#endif /* MENGER_H */
